@@ -16,6 +16,7 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
 from src.componets.Data_transformation import DataTransformation , DataTransformationConfig
+from src.componets.model_trainer import ModelTrainerConfig , ModelTrainer
 
 # Configuration class that stores all file paths
 @dataclass
@@ -111,4 +112,7 @@ if __name__ == "__main__":
     train_data  , test_data=obj.initiate_data_ingestion()
 
     obj2 = DataTransformation()
-    obj2.initiate_data_transformation(train_data , test_data)
+    train_arr , test_arr , _ =obj2.initiate_data_transformation(train_data , test_data)
+
+    model_trainer =ModelTrainer()
+    print(model_trainer.initiate_model_training(train_arr , test_arr ))
